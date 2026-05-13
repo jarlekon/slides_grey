@@ -1,61 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OpenUI → Claude</title>
+<title>Test deck</title>
 <!--
   ============================================================
-  HOW TO USE THIS TEMPLATE
+  TEST DECK
 
-  - Each slide is a <section class="slide">
-  - Add as many slides as you need by copying any section below
-  - Navigate with arrow keys, space, swipe, or the on-screen buttons
-  - Press P or click the button to download as PDF
-  - Drop images and videos into media/ and reference with relative paths
+  Ti slides bygget over seks-beat-strukturen fra docs/STORYTELLING.md.
+  Tema: Top 20 vækstvirksomhederne bremser op. Resten af dansk
+  erhvervsliv skal trække mere af læsset i 2026.
 
-  COMPONENT INDEX
-    1.  Cover slide
-    2.  Quote slide (bold statement)
-    3.  Eyebrow + Headline + Subtitle (default text slide)
-    4.  Two-column (any side-by-side comparison)
-    4b. Two-column step stack (sequential steps with status)
-    5.  Three-column (structural breakdown)
-    6.  Capability list (Q&A rows)
-    7.  Dark callout (one per deck max)
-    8.  Dot flow (process / pipeline)
-    9.  Stack grid (categories / tools / partners)
-    10. Spec block + context + outputs (input → process → output)
-    11. Product slide (showcase style)
-    12. Collage slide (full-bleed media)
-    13. JEDUF three-column comparison (two extremes + middle path)
-    14. Timeline (vertical, year-based)
-    15. Stat grid (big numbers with context)
-    16. Quote pair (two perspectives side by side)
-    17. Logo grid (partners / clients / team)
-    18. Code slide (syntax-highlighted code block)
-    19. Dark slide (emphasis / pivot moment)
-    20. Closing slide
-    21. Thanks slide
+  Speaker notes ligger som HTML kommentarer i hver section.
 
-  STORYTELLING STRUCTURE (six beats)
-    Open → Act 1 (The World Before) → Act 2 (The Turn) →
-    Act 3 (The Evidence) → Act 4 (The Honest Part) → Close
-
-    Works for any format: talks, pitches, strategy decks,
-    product launches, team updates, investor presentations.
-
-  THE HEADLINE PATTERN
-    Bold-then-dim. Anchor + extension.
-    <h1>Headline. <span class="dim">Continuation.</span></h1>
-
-  TONE
-    No em-dashes in body copy. Use periods or shorter sentences.
-    Bold the keyword. Dim the rest.
-    Specific numbers beat vague claims.
-
-  See docs/USING.md, docs/STORYTELLING.md, and docs/DESIGN.md for more.
-  AI agents: see AGENTS.md for full component reference and instructions.
+  Sprogregler i denne version:
+    - Ingen em dash, en dash, bindestreg eller semikolon
+    - Ingen adversativ paratakse
+    - Sentence case overalt
   ============================================================
 -->
 <style>
@@ -95,7 +57,6 @@
     max-width: 1100px;
   }
 
-  /* --- Typography --- */
   .eyebrow {
     font-size: 0.75rem;
     font-weight: 500;
@@ -142,14 +103,12 @@
     letter-spacing: 0.02em;
   }
 
-  /* --- Quote slide --- */
   .quote-slide h1 {
     font-size: clamp(3rem, 7vw, 6.5rem);
     line-height: 1.05;
     letter-spacing: -0.045em;
   }
 
-  /* --- Two col --- */
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -169,25 +128,6 @@
     line-height: 1.6;
   }
 
-  .col-stack > * + * { margin-top: 0.6rem; }
-
-  .step {
-    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
-    color: #1a1a1a;
-    font-weight: 400;
-    padding: 0.4rem 0;
-    border-top: 1px solid #d5d5d0;
-    letter-spacing: -0.005em;
-  }
-
-  .step:first-child { border-top: none; padding-top: 0; }
-  .step.dim { color: #b5b5b0; }
-  .step.kill { color: #1a1a1a; font-weight: 500; }
-  .step.kill::before { content: '×'; margin-right: 0.5rem; }
-  .step.live { color: #1a1a1a; font-weight: 500; }
-  .step.live::before { content: '✓'; margin-right: 0.5rem; }
-
-  /* --- Three col --- */
   .three-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -206,23 +146,6 @@
     line-height: 1.6;
   }
 
-  /* --- Capability list (Q&A) --- */
-  .cap-list { display: flex; flex-direction: column; }
-
-  .cap-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    padding: 1.1rem 0;
-    border-top: 1px solid #e0e0db;
-    align-items: baseline;
-  }
-
-  .cap-row:last-child { border-bottom: 1px solid #e0e0db; }
-  .cap-q { font-size: 1rem; font-weight: 500; }
-  .cap-a { font-size: 0.9rem; color: #a0a09a; line-height: 1.55; }
-
-  /* --- Callout --- */
   .callout {
     background: #1a1a1a;
     color: #f5f5f3;
@@ -247,355 +170,6 @@
 
   .callout p strong { color: #f5f5f3; font-weight: 500; }
 
-  /* --- Dot flow --- */
-  .dot-flow {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    margin: 2.5rem 0;
-    position: relative;
-  }
-
-  .dot-flow::before {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 8%;
-    right: 8%;
-    height: 1px;
-    background: #d5d5d0;
-  }
-
-  .dot-step { text-align: center; }
-
-  .dot-step .dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #1a1a1a;
-    margin: 0 auto 0.85rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .dot-step h4 { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.25rem; }
-  .dot-step p { font-size: 0.72rem; color: #a0a09a; line-height: 1.4; padding: 0 0.5rem; }
-
-  /* --- Stack grid --- */
-  .stack-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .stack-card {
-    border: 1px solid #e0e0db;
-    border-radius: 10px;
-    padding: 1.1rem 1.1rem 1.25rem;
-    background: #fafaf8;
-  }
-
-  .stack-card-label {
-    font-size: 0.6rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #a0a09a;
-    margin-bottom: 0.85rem;
-  }
-
-  .stack-tool {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 0.25rem 0;
-  }
-
-  .stack-tool .mark {
-    width: 14px;
-    height: 14px;
-    background: #1a1a1a;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  /* --- Spec flow --- */
-  .spec-flow {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .spec-block {
-    background: #1a1a1a;
-    color: #f5f5f3;
-    border-radius: 10px;
-    padding: 1.1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .spec-block h4 { font-size: 1rem; font-weight: 500; }
-  .spec-block p { font-size: 0.8rem; color: #888; font-weight: 300; }
-
-  .ctx-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-
-  .ctx-label {
-    font-size: 0.7rem;
-    color: #c5c5c0;
-    margin-right: 0.4rem;
-    font-style: italic;
-  }
-
-  .ctx-pill {
-    font-size: 0.72rem;
-    color: #a0a09a;
-    background: #eeeee9;
-    border-radius: 100px;
-    padding: 0.3rem 0.85rem;
-  }
-
-  .ai-divider { display: flex; align-items: center; gap: 1rem; }
-  .ai-divider .line { flex: 1; height: 1px; background: #d5d5d0; }
-
-  .ai-pill {
-    font-size: 0.65rem;
-    font-weight: 500;
-    color: #a0a09a;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .outputs-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-
-  .output-card {
-    border: 1px solid #e0e0db;
-    border-radius: 10px;
-    padding: 1rem 1.1rem;
-    background: #fff;
-  }
-
-  .output-card h5 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.2rem; }
-  .output-card p { font-size: 0.72rem; color: #a0a09a; line-height: 1.45; }
-
-  /* --- Product slide (showcase style) --- */
-  .product-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  .product-meta { max-width: 460px; }
-  .product-num { font-size: 0.75rem; color: #a0a09a; margin-bottom: 1.25rem; letter-spacing: 0.04em; }
-  .product-tag { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.75rem; }
-
-  .product-headline {
-    font-size: clamp(1.4rem, 2.4vw, 2rem);
-    font-weight: 500;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-  }
-
-  .product-desc {
-    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
-    color: #6a6a66;
-    line-height: 1.55;
-    margin-bottom: 1.5rem;
-  }
-
-  .product-stat { font-size: 0.8rem; color: #a0a09a; }
-
-  .product-name {
-    font-size: clamp(4rem, 9vw, 8rem);
-    font-weight: 500;
-    letter-spacing: -0.045em;
-    line-height: 0.95;
-    text-align: right;
-  }
-
-  .product-name sup {
-    font-size: 0.25em;
-    font-weight: 400;
-    color: #b5b5b0;
-    vertical-align: super;
-    margin-left: 0.1em;
-  }
-
-  /* --- Collage slide --- */
-  .slide.collage-slide {
-    background: #f5f5f3;
-    padding: 4vh 4vw;
-  }
-
-  .collage {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 0;
-  }
-
-  .collage img,
-  .collage video {
-    max-height: 92vh;
-    max-width: 90vw;
-    height: auto;
-    width: auto;
-    display: block;
-  }
-
-  .collage .placeholder {
-    color: #b5b5b0;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 4rem;
-    text-align: center;
-    background: #eeeee9;
-    aspect-ratio: 3 / 4;
-    height: 92vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* --- JEDUF three-column comparison --- */
-  .jeduf {
-    display: grid;
-    grid-template-columns: 1fr 1.15fr 1fr;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .jeduf-col {
-    border: 1px solid #e0e0db;
-    border-radius: 10px;
-    padding: 1.25rem 1.1rem 1.5rem;
-    background: #fafaf8;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .jeduf-col.hero {
-    background: #1a1a1a;
-    color: #f5f5f3;
-    border-color: #1a1a1a;
-  }
-
-  .jeduf-label {
-    font-size: 0.6rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #a0a09a;
-    margin-bottom: 0.4rem;
-  }
-
-  .jeduf-col.hero .jeduf-label { color: #888; }
-  .jeduf-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.35rem; }
-
-  .jeduf-philosophy {
-    font-size: 0.7rem;
-    color: #a0a09a;
-    font-style: italic;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-    min-height: 30pt;
-  }
-
-  .jeduf-col.hero .jeduf-philosophy { color: #ccc; }
-
-  .jeduf-step {
-    border: 1px solid #d5d5d0;
-    border-radius: 4px;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.72rem;
-    font-weight: 500;
-    text-align: center;
-    background: #fff;
-    margin-bottom: 0.35rem;
-  }
-
-  .jeduf-col.hero .jeduf-step {
-    background: #2a2a2a;
-    border-color: #3a3a3a;
-    color: #f5f5f3;
-  }
-
-  /* --- Timeline --- */
-  .timeline {
-    display: flex;
-    flex-direction: column;
-    margin-top: 2rem;
-  }
-
-  .timeline-row {
-    display: grid;
-    grid-template-columns: 120px 24px 1fr;
-    gap: 0 1.5rem;
-    align-items: start;
-  }
-
-  .timeline-year {
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-align: right;
-    padding-top: 1.1rem;
-    color: #1a1a1a;
-  }
-
-  .timeline-track {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    height: 100%;
-  }
-
-  .timeline-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #1a1a1a;
-    margin-top: 1.25rem;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .timeline-line {
-    width: 1px;
-    flex: 1;
-    background: #d5d5d0;
-  }
-
-  .timeline-row:last-child .timeline-line { display: none; }
-
-  .timeline-content {
-    padding: 1rem 0 2rem;
-  }
-
-  .timeline-content h4 {
-    font-size: 0.95rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-  }
-
-  .timeline-content p {
-    font-size: 0.82rem;
-    color: #a0a09a;
-    line-height: 1.55;
-  }
-
-  /* --- Stat grid --- */
   .stat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -645,157 +219,29 @@
 
   .stat-card.stat-dark .stat-desc { color: #ccc; }
 
-  /* --- Quote pair --- */
-  .quote-pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
+  .bullets {
+    margin-top: 1.5rem;
+    list-style: none;
+    padding: 0;
   }
 
-  .quote-card {
-    border: 1px solid #e0e0db;
-    border-radius: 10px;
-    padding: 1.75rem 1.5rem;
-    background: #fafaf8;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .quote-card.quote-dark {
-    background: #1a1a1a;
-    border-color: #1a1a1a;
-    color: #f5f5f3;
-  }
-
-  .quote-text {
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
-    font-weight: 400;
-    line-height: 1.5;
-    flex: 1;
-    font-style: italic;
-    color: #1a1a1a;
-    margin-bottom: 1.25rem;
-  }
-
-  .quote-card.quote-dark .quote-text { color: #f5f5f3; }
-
-  .quote-attr {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: #a0a09a;
-    padding-top: 1rem;
+  .bullets li {
+    font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+    line-height: 1.55;
+    padding: 0.55rem 0;
     border-top: 1px solid #e0e0db;
+    color: #1a1a1a;
   }
 
-  .quote-card.quote-dark .quote-attr {
-    color: #888;
-    border-top-color: #2a2a2a;
-  }
+  .bullets li:first-child { border-top: none; }
 
-  /* --- Logo grid --- */
-  .logo-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .logo-cell {
-    border: 1px solid #e0e0db;
-    border-radius: 10px;
-    padding: 1.5rem 1rem;
-    background: #fafaf8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 100px;
-  }
-
-  .logo-cell img {
-    max-height: 36px;
-    max-width: 80%;
-    margin-bottom: 0.75rem;
-    object-fit: contain;
-  }
-
-  .logo-mark {
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    background: #1a1a1a;
-    margin-bottom: 0.75rem;
-    flex-shrink: 0;
-  }
-
-  .logo-name {
-    font-size: 0.82rem;
-    font-weight: 500;
-  }
-
-  .logo-role {
-    font-size: 0.7rem;
-    color: #a0a09a;
-    margin-top: 0.15rem;
-  }
-
-  /* --- Code slide --- */
-  .code-frame {
-    background: #1a1a1a;
-    border-radius: 10px;
-    padding: 1.5rem 1.75rem;
-    margin-top: 2rem;
-    overflow-x: auto;
-  }
-
-  .code-frame-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid #2a2a2a;
-  }
-
-  .code-frame-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #3a3a3a;
-  }
-
-  .code-frame-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    color: #555;
-    margin-left: 0.5rem;
-    letter-spacing: 0.02em;
-  }
-
-  .code-frame pre {
-    font-family: 'JetBrains Mono', 'SF Mono', monospace;
-    font-size: 0.82rem;
-    line-height: 1.7;
-    color: #f5f5f3;
-    margin: 0;
-    background: none;
-  }
-
-  .code-frame .code-comment { color: #555; }
-  .code-frame .code-keyword { color: #b5b5b0; font-weight: 500; }
-  .code-frame .code-string { color: #ccc; }
-  .code-frame .code-dim { color: #888; }
-
-  /* --- Dark slide --- */
   .slide.dark { background: #1a1a1a; color: #f5f5f3; }
   .slide.dark h1 { color: #f5f5f3; }
   .slide.dark h1 span.dim { color: #888; }
   .slide.dark .subtitle { color: #888; }
   .slide.dark .eyebrow { color: #666; }
+  .slide.dark .bullets li { color: #f5f5f3; border-top-color: #2a2a2a; }
 
-  /* --- Nav --- */
   .nav {
     position: fixed;
     bottom: 1.5rem;
@@ -837,7 +283,6 @@
     z-index: 100;
   }
 
-  /* --- PDF download button --- */
   .pdf-btn {
     position: fixed;
     bottom: 1.5rem;
@@ -859,7 +304,6 @@
 
   .pdf-btn:hover { background: #000; }
 
-  /* --- Print: each slide becomes one 16:9 PDF page --- */
   @page { size: 13.333in 7.5in; margin: 0; }
 
   @media print {
@@ -894,69 +338,319 @@
 
 <div class="deck">
 
-  <!-- ========== 1. COVER (Open — hook the room) ========== -->
+  <!-- ========== 1. COVER (Open) ========== -->
   <section class="slide active">
+    <!--
+      SPEAKER NOTES
+      Åbningen. Sæt scenen kort. Sig at præsentationen handler om en
+      konkret vending i dansk økonomi som rammer hele erhvervslivet i
+      2026. De 20 mest værdiskabende virksomheder bremser op. Tallet
+      0,4 procentpoint nævnes som teaser. Hold pause efter undertitlen
+      og lad rummet komme til dig.
+
+      Kilde: DI analyse af top 20 virksomhederne baseret på registerdata
+      fra Danmarks Statistik og regnskaber fra Lasso X.
+    -->
     <div class="slide-inner">
-      <div class="eyebrow">Team-oplæg · maj 2026</div>
-      <h1>Skift værktøj.<br><span class="dim">Skift hvad I kan bygge.</span></h1>
-      <div class="meta">Hvorfor vi skal flytte fra OpenUI til Claude</div>
+      <div class="eyebrow">Markedsudsyn · 2026</div>
+      <h1>Når motoren skifter gear. <span class="dim">Hvad det betyder for resten af dansk erhvervsliv.</span></h1>
+      <div class="meta">Salgspræsentation · 10 minutter</div>
     </div>
   </section>
 
-  <!-- ========== 2. ACT 1 + ACT 2 — World Before / The Turn ========== -->
+  <!-- ========== 2. QUOTE HOOK (Open) ========== -->
+  <section class="slide quote-slide">
+    <!--
+      SPEAKER NOTES
+      Hooket. Lever de tre korte sætninger langsomt. De fortæller en
+      asymmetri som de fleste i salen ikke kender til.
+
+      Konkret baggrund fra rapporten:
+      - 20 virksomheder dækker lidt over to procent af den samlede
+        beskæftigelse i Danmark.
+      - Fra 2021 til 2025 voksede dansk økonomi 7,5 procent samlet set.
+      - Ses der bort fra top 20, var fremgangen i resten af økonomien
+        blot lidt over 1 procent. Top 20 stod altså for langt
+        størstedelen af den samlede vækst i fire år.
+
+      Pointe til salen: Vores vækst har hvilet på meget få skuldre.
+    -->
+    <div class="slide-inner">
+      <h1>20 virksomheder. <span class="dim">To procent af jobbene. Størstedelen af væksten.</span></h1>
+    </div>
+  </section>
+
+  <!-- ========== 3. ACT 1 · THE WORLD BEFORE ========== -->
   <section class="slide">
+    <!--
+      SPEAKER NOTES
+      Beskriv den verden vi kommer fra. Fra 2021 til 2025 har top 20
+      virksomhederne fungeret som vækstlokomotiv for hele økonomien.
+      Resten af erhvervslivet har leveret en meget beskeden fremgang
+      i samme periode.
+
+      Centrale fakta fra rapporten:
+      - Top 20 defineres som koncerner med mindst 1000 årsværk i 2023
+        og en gennemsnitlig årlig real værditilvækst per årsværk på
+        mindst 1,5 mio. kr. i perioden 2019 til 2023.
+      - De har stået for en væsentlig del af væksten siden 2021.
+      - Resten af økonomien voksede kun lidt over 1 procent fra 2021
+        til 2025.
+
+      Pointe til målgruppen: Den øvrige del af erhvervslivet har levet
+      i en virkelighed hvor lokomotivet trak hovedparten af læsset.
+    -->
+    <div class="slide-inner">
+      <div class="eyebrow">Verden indtil nu</div>
+      <h1>Lokomotivet kørte for os alle. <span class="dim">Resten af toget rullede stille med.</span></h1>
+      <ul class="bullets">
+        <li>Dansk økonomi voksede 7,5 procent fra 2021 til 2025</li>
+        <li>Ses der bort fra top 20, var fremgangen i resten af økonomien lidt over 1 procent</li>
+        <li>Top 20 dækker lidt over 2 procent af den samlede beskæftigelse i Danmark</li>
+        <li>Top 20 defineres som koncerner med mindst 1000 årsværk og høj værditilvækst per årsværk</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== 4. ACT 1 · PROOF OF SIZE (stat grid) ========== -->
+  <section class="slide">
+    <!--
+      SPEAKER NOTES
+      Vis konkret hvor disproportionalt stor en rolle top 20 har spillet.
+      Tre tal som forklarer hvorfor de har trukket væksten.
+
+      Baggrund fra rapporten:
+      - Top 20 har en eksport, der er 5 til 6 gange større end resten
+        af erhvervslivet. Især trukket af nogle få store industri
+        virksomheder.
+      - Merchanting og processing aktiviteter står for 265 mia. kr.
+        af de samlede 330 mia. kr. i 2025. Det svarer til omkring en
+        femtedel af den samlede danske vareeksport.
+      - 16 procent af de beskæftigede i top 20 arbejder med forskning
+        og udvikling. I resten af erhvervslivet er andelen 2 procent.
+      - Top 20 bruger i gennemsnit 6 procent af værditilvæksten på
+        forskning og udvikling. Det er tre gange mere end i det øvrige
+        private erhvervsliv.
+
+      Forklar M&P kort: produktion og salg foregår i udlandet uden at
+      varerne krydser den danske grænse. Det fylder meget i dansk BNP,
+      og det fylder meget i top 20 regnskaberne.
+    -->
+    <div class="slide-inner">
+      <div class="eyebrow">Lokomotivet i tal</div>
+      <h2>Tyve virksomheder. <span class="dim">Disproportional kraft.</span></h2>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Eksport</div>
+          <div class="stat-number">5 til 6 ×</div>
+          <div class="stat-desc">Top 20 eksporterer fem til seks gange mere end resten af erhvervslivet</div>
+        </div>
+        <div class="stat-card stat-dark">
+          <div class="stat-label">Indtægter fra udlandet</div>
+          <div class="stat-number">265 mia.</div>
+          <div class="stat-desc">M&amp;P indtægter i top 20 i 2025. Cirka en femtedel af samlet dansk vareeksport</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">FoU andel af medarbejdere</div>
+          <div class="stat-number">16 %</div>
+          <div class="stat-desc">Andel ansatte i top 20 der arbejder med forskning og udvikling. Tallet for resten er 2 procent</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. ACT 2 · THE TURN (dark) ========== -->
+  <section class="slide dark">
+    <!--
+      SPEAKER NOTES
+      Vendingen. Sig det roligt. Lever pointen som det datapunkt
+      der ændrer hele billedet for 2026.
+
+      Tal fra rapporten:
+      - Top 20 forventes at bidrage med 0,4 procentpoint til væksten
+        i dansk BNP i 2026.
+      - Det er det laveste vækstbidrag fra top 20 i seks år.
+      - Bidraget falder til omtrent samme niveau som i perioden 2015
+        til 2020.
+      - Beregningen bygger på virksomhedernes egne forventninger i de
+        seneste offentliggjorte årsregnskaber for 2025.
+
+      Pointe: De har ikke forsvundet. De er stadig store. Tempoet er
+      bare et helt andet i 2026.
+    -->
+    <div class="slide-inner">
+      <div class="eyebrow">Skiftet</div>
+      <h1>Et gear ned. <span class="dim">0,4 procentpoint i 2026.</span></h1>
+      <p class="subtitle">Top 20 virksomhederne forventes at bidrage med 0,4 procentpoint til væksten i dansk BNP i 2026. Det er det laveste vækstbidrag i seks år. Niveauet svarer til perioden 2015 til 2020.</p>
+    </div>
+  </section>
+
+  <!-- ========== 6. ACT 3 · EVIDENCE 1: hvorfor bremser toppen ========== -->
+  <section class="slide">
+    <!--
+      SPEAKER NOTES
+      Forklar hvorfor opbremsningen sker. Det er primært prisdrevet og
+      knytter sig til medicinalindustrien.
+
+      Fakta fra rapporten:
+      - Reduktionen i top 20's omsætning er primært drevet af markante
+        prisfald, især i medicinalindustrien.
+      - Faldende afsætning spiller en mindre rolle.
+      - Effekten rammer først og fremmest virksomhedernes
+        indtjeningsevne og selskabsskattebetalinger.
+      - BNP opgjort i faste priser påvirkes i mindre grad.
+      - Jobvæksten i industriens fem største top 20 virksomheder var
+        negativ i fjerde kvartal 2025.
+
+      Pointe: Den positive nyhed i de dårlige tal er at BNP i faste
+      priser stadig får et positivt bidrag. Den mindre positive nyhed
+      er at selskabsskat og indtjening kommer under pres.
+    -->
+    <div class="slide-inner">
+      <div class="eyebrow">Hvorfor lokomotivet bremser</div>
+      <h2>Tre kræfter trækker væksten ned.</h2>
+      <div class="three-col" style="margin-top: 2rem;">
+        <div>
+          <h3>Prisfald</h3>
+          <p>Markante prisfald i medicinalindustrien reducerer top 20's omsætning i 2026.</p>
+        </div>
+        <div>
+          <h3>Indtjening</h3>
+          <p>Faldet rammer primært virksomhedernes indtjeningsevne og selskabsskattebetalinger. BNP i faste priser påvirkes i mindre grad.</p>
+        </div>
+        <div>
+          <h3>Industri jobs</h3>
+          <p>Jobvæksten i industriens fem største top 20 virksomheder var negativ i fjerde kvartal 2025.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. ACT 3 · EVIDENCE 2: hjemlige motorer ========== -->
+  <section class="slide">
+    <!--
+      SPEAKER NOTES
+      Vis at den hjemlige motor allerede er begyndt at trække. 2025 gav
+      tre konkrete vækstbidrag som top 20 ikke står for.
+
+      Fakta fra rapporten:
+      - I 2025 kom der mere gang i væksten fra privatforbruget.
+      - Den offentlige efterspørgsel leverede et stigende bidrag.
+      - Gasproduktionen i Nordsøen bidrog positivt til den samlede
+        fremgang.
+      - Eksportens bidrag til væksten aftog over året.
+
+      Pointe: Det er de hjemlige hjul i økonomien der ruller bedst lige
+      nu. Det er præcis dem som størstedelen af erhvervslivet er
+      koblet på.
+    -->
+    <div class="slide-inner">
+      <div class="eyebrow">Hvor væksten kommer fra nu</div>
+      <h2>Den hjemlige motor tager over. <span class="dim">Tre brikker faldt på plads i 2025.</span></h2>
+      <div class="three-col" style="margin-top: 2rem;">
+        <div>
+          <h3>Privatforbrug</h3>
+          <p>Mere gang i privatforbruget gav et større vækstbidrag i 2025.</p>
+        </div>
+        <div>
+          <h3>Offentlig efterspørgsel</h3>
+          <p>Den offentlige efterspørgsel leverede et øget bidrag til væksten.</p>
+        </div>
+        <div>
+          <h3>Nordsøen</h3>
+          <p>Gasproduktionen i Nordsøen voksede og løftede den samlede fremgang.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. ACT 3 · EVIDENCE 3: jobs flytter ud i bredden ========== -->
+  <section class="slide">
+    <!--
+      SPEAKER NOTES
+      Bekræft at fortællingen også viser sig på arbejdsmarkedet. Jobs
+      skabes nu i bredden af erhvervslivet, ikke kun i top 5.
+
+      Fakta fra rapporten:
+      - Øvrige industrivirksomheder uden for de fem største top 20
+        oplevede lidt større fremgang i beskæftigelsen over det
+        seneste år.
+      - Arbejdsmarkedet samlet set har vist fremgang med stigende
+        beskæftigelse i de fleste brancher i 2025.
+      - Industriens fem største top 20 virksomheder havde i perioder
+        så stor en andel af beskæftigelsesudviklingen i industrien at
+        der samlet set ville have været tilbagegang uden deres bidrag.
+        Det er den rolle de nu træder ud af.
+
+      Pointe: Det er den brede del af erhvervslivet der lige nu skaber
+      jobs. Det giver konkret luft til opskalering og rekruttering hos
+      de øvrige virksomheder.
+    -->
     <div class="slide-inner">
       <div class="two-col">
         <div>
-          <div class="eyebrow">Sådan er det nu</div>
-          <h2>OpenUI <span class="dim">sætter loftet.</span></h2>
-          <p>Vi kopierer kode ind. Vi kopierer svar ud. Konteksten ryger hver gang. Vi vænner os til at spørge mindre, fordi det koster mere at spørge.</p>
+          <div class="eyebrow">Industriens øvrige</div>
+          <h2>Bredden skaber industrijobs.</h2>
+          <p>Øvrige industrivirksomheder uden for de fem største top 20 oplevede lidt større fremgang i beskæftigelsen over det seneste år.</p>
         </div>
         <div>
-          <div class="eyebrow">Det der ændrede sig</div>
-          <h2>Claude <span class="dim">flytter loftet.</span></h2>
-          <p>Den læser repoet. Den kører kommandoer. Den holder tråden gennem en hel opgave. Den svarer ikke. Den bygger.</p>
+          <div class="eyebrow">På tværs af brancher</div>
+          <h2>De fleste brancher vokser.</h2>
+          <p>Arbejdsmarkedet samlet set har vist fremgang med stigende beskæftigelse i de fleste brancher gennem 2025.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== 3. ACT 3 — The Evidence ========== -->
+  <!-- ========== 9. ACT 4 · THE HONEST PART (callout) ========== -->
   <section class="slide">
-    <div class="slide-inner">
-      <div class="eyebrow">Hvad det betyder for os</div>
-      <h2>Tre opgaver. <span class="dim">Halv tid.</span></h2>
-      <div class="cap-list" style="margin-top: 2rem;">
-        <div class="cap-row">
-          <div class="cap-q">Ny komponent fra et Figma-mockup</div>
-          <div class="cap-a">OpenUI: to timer copy-paste frem og tilbage. Claude Code: tyve minutter, én commit, færdigt PR.</div>
-        </div>
-        <div class="cap-row">
-          <div class="cap-q">Refaktorering på tværs af filer</div>
-          <div class="cap-a">OpenUI giver dig forslag du selv skal stykke sammen. Claude læser konteksten og laver ændringen i alle filerne.</div>
-        </div>
-        <div class="cap-row">
-          <div class="cap-q">Bug-jagt i ukendt kode</div>
-          <div class="cap-a">OpenUI gætter ud fra et udsnit. Claude åbner filerne, kører testen, finder fejlen.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!--
+      SPEAKER NOTES
+      Den ærlige del. Den hjemlige efterspørgsel er en god rygdækning,
+      og verdensøkonomien er samtidig usikker.
 
-  <!-- ========== 4. ACT 4 — The Honest Part ========== -->
-  <section class="slide">
+      Fakta fra rapporten:
+      - Der er udsigt til fortsat fremgang i især den hjemlige
+        efterspørgsel i 2026.
+      - Der hersker betydelig usikkerhed om udviklingen i
+        verdensøkonomien.
+      - Den omfattende krig i Mellemøsten ventes at svække
+        vækstudsigterne for 2026.
+      - International konkurrence tiltager.
+      - Lavere vækstbidrag fra top 20 stiller krav til politikerne om
+        rammevilkår der holder det øvrige erhvervsliv konkurrence
+        dygtigt.
+
+      Pointe: Vi sælger ikke en sikker fremtid. Vi taler om en
+      situation hvor rammevilkår, eksekvering og lokal omstilling
+      afgør hvem der vokser i 2026.
+    -->
     <div class="slide-inner">
       <div class="callout">
-        <h3>Hvad det koster</h3>
-        <p>Claude er dyrere per sæde per måned. <strong>Vi skal bruge en uge på at lære at briefe den ordentligt.</strong> Og den laver fejl — vi skal læse hver commit, ikke trykke godkend. Men de timer vi sparer hver uge betaler licensen tilbage på under en måned.</p>
+        <h3>Det vi ikke ved</h3>
+        <p>Verdensøkonomien er usikker. <strong>Krigen i Mellemøsten ventes at svække vækstudsigterne for 2026.</strong> International konkurrence tiltager. Den hjemlige efterspørgsel forventes at fortsætte fremgangen i 2026.</p>
       </div>
     </div>
   </section>
 
-  <!-- ========== 5. CLOSING ========== -->
+  <!-- ========== 10. CLOSE (dark) ========== -->
   <section class="slide dark quote-slide">
+    <!--
+      SPEAKER NOTES
+      Closing line. Sig den langsomt. Hold pause. Stop med at tale.
+
+      Rapportens egen konklusion: De 20 virksomheder fortsætter med
+      at trække dansk økonomi i en positiv retning. Deres betydning
+      bliver ikke nær så markant som de foregående år. Det er
+      afgørende at resten af erhvervslivet fortsætter de positive
+      takter fra 2025 og leverer et positivt bidrag til væksten.
+
+      Næste skridt: Inviter til samtale om hvordan jeres virksomhed
+      kan udnytte den hjemlige fremgang og styrke konkurrenceevnen i
+      et usikkert globalt marked.
+    -->
     <div class="slide-inner">
-      <h1>Værktøjet kopierer ikke længere.<br><span class="dim">Det bygger.</span></h1>
+      <h1>Vækstmotoren har skiftet. <span class="dim">Det er bredden, der bærer 2026.</span></h1>
     </div>
   </section>
 
@@ -965,7 +659,7 @@
 <button class="pdf-btn" onclick="downloadPDF()">Download PDF</button>
 
 <div class="nav">
-  <span id="counter">1 / 5</span>
+  <span id="counter">1 / 10</span>
   <div class="nav-buttons">
     <button class="nav-btn" onclick="prev()">‹</button>
     <button class="nav-btn" onclick="next()">›</button>
@@ -999,7 +693,7 @@
 
   function downloadPDF() {
     const originalTitle = document.title;
-    document.title = 'deck';
+    document.title = 'test-deck';
     window.print();
     setTimeout(() => { document.title = originalTitle; }, 1000);
   }
@@ -1020,8 +714,6 @@
     if (dx < 0) next();
     else prev();
   }, { passive: true });
-
-  const isEmbed = new URLSearchParams(window.location.search).has('embed');
 
   show(0);
 </script>
