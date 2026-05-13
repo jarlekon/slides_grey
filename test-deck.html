@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenUI → Claude</title>
+<!--
+  ============================================================
+  HOW TO USE THIS TEMPLATE
+
+  - Each slide is a <section class="slide">
+  - Add as many slides as you need by copying any section below
+  - Navigate with arrow keys, space, swipe, or the on-screen buttons
+  - Press P or click the button to download as PDF
+  - Drop images and videos into media/ and reference with relative paths
+
+  COMPONENT INDEX
+    1.  Cover slide
+    2.  Quote slide (bold statement)
+    3.  Eyebrow + Headline + Subtitle (default text slide)
+    4.  Two-column (any side-by-side comparison)
+    4b. Two-column step stack (sequential steps with status)
+    5.  Three-column (structural breakdown)
+    6.  Capability list (Q&A rows)
+    7.  Dark callout (one per deck max)
+    8.  Dot flow (process / pipeline)
+    9.  Stack grid (categories / tools / partners)
+    10. Spec block + context + outputs (input → process → output)
+    11. Product slide (showcase style)
+    12. Collage slide (full-bleed media)
+    13. JEDUF three-column comparison (two extremes + middle path)
+    14. Timeline (vertical, year-based)
+    15. Stat grid (big numbers with context)
+    16. Quote pair (two perspectives side by side)
+    17. Logo grid (partners / clients / team)
+    18. Code slide (syntax-highlighted code block)
+    19. Dark slide (emphasis / pivot moment)
+    20. Closing slide
+    21. Thanks slide
+
+  STORYTELLING STRUCTURE (six beats)
+    Open → Act 1 (The World Before) → Act 2 (The Turn) →
+    Act 3 (The Evidence) → Act 4 (The Honest Part) → Close
+
+    Works for any format: talks, pitches, strategy decks,
+    product launches, team updates, investor presentations.
+
+  THE HEADLINE PATTERN
+    Bold-then-dim. Anchor + extension.
+    <h1>Headline. <span class="dim">Continuation.</span></h1>
+
+  TONE
+    No em-dashes in body copy. Use periods or shorter sentences.
+    Bold the keyword. Dim the rest.
+    Specific numbers beat vague claims.
+
+  See docs/USING.md, docs/STORYTELLING.md, and docs/DESIGN.md for more.
+  AI agents: see AGENTS.md for full component reference and instructions.
+  ============================================================
+-->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f5f3;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 6vh 8vw;
+  }
+
+  .slide.active { display: flex; }
+
+  .slide-inner {
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  /* --- Typography --- */
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #a0a09a;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 span.dim, h2 span.dim, h3 span.dim {
+    color: #b5b5b0;
+    font-weight: 300;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    color: #a0a09a;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 720px;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+    color: #a0a09a;
+    font-weight: 400;
+    margin-top: 3rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* --- Quote slide --- */
+  .quote-slide h1 {
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+  }
+
+  /* --- Two col --- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .two-col h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .two-col p {
+    font-size: 0.95rem;
+    color: #a0a09a;
+    line-height: 1.6;
+  }
+
+  .col-stack > * + * { margin-top: 0.6rem; }
+
+  .step {
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    color: #1a1a1a;
+    font-weight: 400;
+    padding: 0.4rem 0;
+    border-top: 1px solid #d5d5d0;
+    letter-spacing: -0.005em;
+  }
+
+  .step:first-child { border-top: none; padding-top: 0; }
+  .step.dim { color: #b5b5b0; }
+  .step.kill { color: #1a1a1a; font-weight: 500; }
+  .step.kill::before { content: '×'; margin-right: 0.5rem; }
+  .step.live { color: #1a1a1a; font-weight: 500; }
+  .step.live::before { content: '✓'; margin-right: 0.5rem; }
+
+  /* --- Three col --- */
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .three-col h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+
+  .three-col p {
+    font-size: 0.85rem;
+    color: #a0a09a;
+    line-height: 1.6;
+  }
+
+  /* --- Capability list (Q&A) --- */
+  .cap-list { display: flex; flex-direction: column; }
+
+  .cap-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid #e0e0db;
+    align-items: baseline;
+  }
+
+  .cap-row:last-child { border-bottom: 1px solid #e0e0db; }
+  .cap-q { font-size: 1rem; font-weight: 500; }
+  .cap-a { font-size: 0.9rem; color: #a0a09a; line-height: 1.55; }
+
+  /* --- Callout --- */
+  .callout {
+    background: #1a1a1a;
+    color: #f5f5f3;
+    border-radius: 10px;
+    padding: 2rem 2.5rem;
+  }
+
+  .callout h3 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+
+  .callout p {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #ccc;
+  }
+
+  .callout p strong { color: #f5f5f3; font-weight: 500; }
+
+  /* --- Dot flow --- */
+  .dot-flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .dot-flow::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: #d5d5d0;
+  }
+
+  .dot-step { text-align: center; }
+
+  .dot-step .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    margin: 0 auto 0.85rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .dot-step h4 { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .dot-step p { font-size: 0.72rem; color: #a0a09a; line-height: 1.4; padding: 0 0.5rem; }
+
+  /* --- Stack grid --- */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .stack-card {
+    border: 1px solid #e0e0db;
+    border-radius: 10px;
+    padding: 1.1rem 1.1rem 1.25rem;
+    background: #fafaf8;
+  }
+
+  .stack-card-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a0a09a;
+    margin-bottom: 0.85rem;
+  }
+
+  .stack-tool {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.25rem 0;
+  }
+
+  .stack-tool .mark {
+    width: 14px;
+    height: 14px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* --- Spec flow --- */
+  .spec-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .spec-block {
+    background: #1a1a1a;
+    color: #f5f5f3;
+    border-radius: 10px;
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .spec-block h4 { font-size: 1rem; font-weight: 500; }
+  .spec-block p { font-size: 0.8rem; color: #888; font-weight: 300; }
+
+  .ctx-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+
+  .ctx-label {
+    font-size: 0.7rem;
+    color: #c5c5c0;
+    margin-right: 0.4rem;
+    font-style: italic;
+  }
+
+  .ctx-pill {
+    font-size: 0.72rem;
+    color: #a0a09a;
+    background: #eeeee9;
+    border-radius: 100px;
+    padding: 0.3rem 0.85rem;
+  }
+
+  .ai-divider { display: flex; align-items: center; gap: 1rem; }
+  .ai-divider .line { flex: 1; height: 1px; background: #d5d5d0; }
+
+  .ai-pill {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #a0a09a;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .outputs-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+  .output-card {
+    border: 1px solid #e0e0db;
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    background: #fff;
+  }
+
+  .output-card h5 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .output-card p { font-size: 0.72rem; color: #a0a09a; line-height: 1.45; }
+
+  /* --- Product slide (showcase style) --- */
+  .product-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .product-meta { max-width: 460px; }
+  .product-num { font-size: 0.75rem; color: #a0a09a; margin-bottom: 1.25rem; letter-spacing: 0.04em; }
+  .product-tag { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.75rem; }
+
+  .product-headline {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .product-desc {
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    color: #6a6a66;
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-stat { font-size: 0.8rem; color: #a0a09a; }
+
+  .product-name {
+    font-size: clamp(4rem, 9vw, 8rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+    text-align: right;
+  }
+
+  .product-name sup {
+    font-size: 0.25em;
+    font-weight: 400;
+    color: #b5b5b0;
+    vertical-align: super;
+    margin-left: 0.1em;
+  }
+
+  /* --- Collage slide --- */
+  .slide.collage-slide {
+    background: #f5f5f3;
+    padding: 4vh 4vw;
+  }
+
+  .collage {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  .collage img,
+  .collage video {
+    max-height: 92vh;
+    max-width: 90vw;
+    height: auto;
+    width: auto;
+    display: block;
+  }
+
+  .collage .placeholder {
+    color: #b5b5b0;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4rem;
+    text-align: center;
+    background: #eeeee9;
+    aspect-ratio: 3 / 4;
+    height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* --- JEDUF three-column comparison --- */
+  .jeduf {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .jeduf-col {
+    border: 1px solid #e0e0db;
+    border-radius: 10px;
+    padding: 1.25rem 1.1rem 1.5rem;
+    background: #fafaf8;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .jeduf-col.hero {
+    background: #1a1a1a;
+    color: #f5f5f3;
+    border-color: #1a1a1a;
+  }
+
+  .jeduf-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a0a09a;
+    margin-bottom: 0.4rem;
+  }
+
+  .jeduf-col.hero .jeduf-label { color: #888; }
+  .jeduf-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.35rem; }
+
+  .jeduf-philosophy {
+    font-size: 0.7rem;
+    color: #a0a09a;
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    min-height: 30pt;
+  }
+
+  .jeduf-col.hero .jeduf-philosophy { color: #ccc; }
+
+  .jeduf-step {
+    border: 1px solid #d5d5d0;
+    border-radius: 4px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-align: center;
+    background: #fff;
+    margin-bottom: 0.35rem;
+  }
+
+  .jeduf-col.hero .jeduf-step {
+    background: #2a2a2a;
+    border-color: #3a3a3a;
+    color: #f5f5f3;
+  }
+
+  /* --- Timeline --- */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 120px 24px 1fr;
+    gap: 0 1.5rem;
+    align-items: start;
+  }
+
+  .timeline-year {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: right;
+    padding-top: 1.1rem;
+    color: #1a1a1a;
+  }
+
+  .timeline-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100%;
+  }
+
+  .timeline-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    margin-top: 1.25rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-line {
+    width: 1px;
+    flex: 1;
+    background: #d5d5d0;
+  }
+
+  .timeline-row:last-child .timeline-line { display: none; }
+
+  .timeline-content {
+    padding: 1rem 0 2rem;
+  }
+
+  .timeline-content h4 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.82rem;
+    color: #a0a09a;
+    line-height: 1.55;
+  }
+
+  /* --- Stat grid --- */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .stat-card {
+    border: 1px solid #e0e0db;
+    border-radius: 10px;
+    padding: 1.5rem 1.4rem;
+    background: #fafaf8;
+  }
+
+  .stat-card.stat-dark {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #f5f5f3;
+  }
+
+  .stat-number {
+    font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-card.stat-dark .stat-number { color: #f5f5f3; }
+
+  .stat-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a0a09a;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-card.stat-dark .stat-label { color: #888; }
+
+  .stat-desc {
+    font-size: 0.82rem;
+    color: #a0a09a;
+    line-height: 1.5;
+  }
+
+  .stat-card.stat-dark .stat-desc { color: #ccc; }
+
+  /* --- Quote pair --- */
+  .quote-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .quote-card {
+    border: 1px solid #e0e0db;
+    border-radius: 10px;
+    padding: 1.75rem 1.5rem;
+    background: #fafaf8;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .quote-card.quote-dark {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #f5f5f3;
+  }
+
+  .quote-text {
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-weight: 400;
+    line-height: 1.5;
+    flex: 1;
+    font-style: italic;
+    color: #1a1a1a;
+    margin-bottom: 1.25rem;
+  }
+
+  .quote-card.quote-dark .quote-text { color: #f5f5f3; }
+
+  .quote-attr {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #a0a09a;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0db;
+  }
+
+  .quote-card.quote-dark .quote-attr {
+    color: #888;
+    border-top-color: #2a2a2a;
+  }
+
+  /* --- Logo grid --- */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .logo-cell {
+    border: 1px solid #e0e0db;
+    border-radius: 10px;
+    padding: 1.5rem 1rem;
+    background: #fafaf8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100px;
+  }
+
+  .logo-cell img {
+    max-height: 36px;
+    max-width: 80%;
+    margin-bottom: 0.75rem;
+    object-fit: contain;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: #1a1a1a;
+    margin-bottom: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .logo-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .logo-role {
+    font-size: 0.7rem;
+    color: #a0a09a;
+    margin-top: 0.15rem;
+  }
+
+  /* --- Code slide --- */
+  .code-frame {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 1.5rem 1.75rem;
+    margin-top: 2rem;
+    overflow-x: auto;
+  }
+
+  .code-frame-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .code-frame-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3a3a3a;
+  }
+
+  .code-frame-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: #555;
+    margin-left: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .code-frame pre {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #f5f5f3;
+    margin: 0;
+    background: none;
+  }
+
+  .code-frame .code-comment { color: #555; }
+  .code-frame .code-keyword { color: #b5b5b0; font-weight: 500; }
+  .code-frame .code-string { color: #ccc; }
+  .code-frame .code-dim { color: #888; }
+
+  /* --- Dark slide --- */
+  .slide.dark { background: #1a1a1a; color: #f5f5f3; }
+  .slide.dark h1 { color: #f5f5f3; }
+  .slide.dark h1 span.dim { color: #888; }
+  .slide.dark .subtitle { color: #888; }
+  .slide.dark .eyebrow { color: #666; }
+
+  /* --- Nav --- */
+  .nav {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    font-size: 0.7rem;
+    color: #b5b5b0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-buttons { display: flex; gap: 0.5rem; }
+
+  .nav-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #d5d5d0;
+    background: transparent;
+    color: #b5b5b0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    padding: 0;
+  }
+
+  .nav-btn:hover { border-color: #1a1a1a; color: #1a1a1a; }
+
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: #1a1a1a;
+    transition: width 0.3s ease;
+    z-index: 100;
+  }
+
+  /* --- PDF download button --- */
+  .pdf-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    background: #1a1a1a;
+    color: #f5f5f3;
+    border: none;
+    padding: 0.55rem 1.25rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  .pdf-btn:hover { background: #000; }
+
+  /* --- Print: each slide becomes one 16:9 PDF page --- */
+  @page { size: 13.333in 7.5in; margin: 0; }
+
+  @media print {
+    html, body {
+      width: 13.333in;
+      height: auto !important;
+      overflow: visible !important;
+      background: #f5f5f3;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .deck { width: 13.333in; height: auto; position: static; }
+    .slide {
+      display: flex !important;
+      position: relative !important;
+      inset: auto !important;
+      width: 13.333in !important;
+      height: 7.5in !important;
+      page-break-after: always !important;
+      break-after: page !important;
+      -webkit-print-color-adjust: exact !important;
+    }
+    .slide:last-child { page-break-after: auto !important; }
+    .slide.dark { background: #1a1a1a !important; }
+    .nav, .progress, .pdf-btn { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="deck">
+
+  <!-- ========== 1. COVER (Open — hook the room) ========== -->
+  <section class="slide active">
+    <div class="slide-inner">
+      <div class="eyebrow">Team-oplæg · maj 2026</div>
+      <h1>Skift værktøj.<br><span class="dim">Skift hvad I kan bygge.</span></h1>
+      <div class="meta">Hvorfor vi skal flytte fra OpenUI til Claude</div>
+    </div>
+  </section>
+
+  <!-- ========== 2. ACT 1 + ACT 2 — World Before / The Turn ========== -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="two-col">
+        <div>
+          <div class="eyebrow">Sådan er det nu</div>
+          <h2>OpenUI <span class="dim">sætter loftet.</span></h2>
+          <p>Vi kopierer kode ind. Vi kopierer svar ud. Konteksten ryger hver gang. Vi vænner os til at spørge mindre, fordi det koster mere at spørge.</p>
+        </div>
+        <div>
+          <div class="eyebrow">Det der ændrede sig</div>
+          <h2>Claude <span class="dim">flytter loftet.</span></h2>
+          <p>Den læser repoet. Den kører kommandoer. Den holder tråden gennem en hel opgave. Den svarer ikke. Den bygger.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 3. ACT 3 — The Evidence ========== -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Hvad det betyder for os</div>
+      <h2>Tre opgaver. <span class="dim">Halv tid.</span></h2>
+      <div class="cap-list" style="margin-top: 2rem;">
+        <div class="cap-row">
+          <div class="cap-q">Ny komponent fra et Figma-mockup</div>
+          <div class="cap-a">OpenUI: to timer copy-paste frem og tilbage. Claude Code: tyve minutter, én commit, færdigt PR.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">Refaktorering på tværs af filer</div>
+          <div class="cap-a">OpenUI giver dig forslag du selv skal stykke sammen. Claude læser konteksten og laver ændringen i alle filerne.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">Bug-jagt i ukendt kode</div>
+          <div class="cap-a">OpenUI gætter ud fra et udsnit. Claude åbner filerne, kører testen, finder fejlen.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. ACT 4 — The Honest Part ========== -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="callout">
+        <h3>Hvad det koster</h3>
+        <p>Claude er dyrere per sæde per måned. <strong>Vi skal bruge en uge på at lære at briefe den ordentligt.</strong> Og den laver fejl — vi skal læse hver commit, ikke trykke godkend. Men de timer vi sparer hver uge betaler licensen tilbage på under en måned.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. CLOSING ========== -->
+  <section class="slide dark quote-slide">
+    <div class="slide-inner">
+      <h1>Værktøjet kopierer ikke længere.<br><span class="dim">Det bygger.</span></h1>
+    </div>
+  </section>
+
+</div>
+
+<button class="pdf-btn" onclick="downloadPDF()">Download PDF</button>
+
+<div class="nav">
+  <span id="counter">1 / 5</span>
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="prev()">‹</button>
+    <button class="nav-btn" onclick="next()">›</button>
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  let current = 0;
+
+  function show(i) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[i].classList.add('active');
+    counter.textContent = `${i + 1} / ${slides.length}`;
+    progress.style.width = `${((i + 1) / slides.length) * 100}%`;
+    current = i;
+  }
+
+  function next() { if (current < slides.length - 1) show(current + 1); }
+  function prev() { if (current > 0) show(current - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    if (e.key === 'Home') { show(0); }
+    if (e.key === 'End') { show(slides.length - 1); }
+    if (e.key === 'p' || e.key === 'P') { e.preventDefault(); downloadPDF(); }
+  });
+
+  function downloadPDF() {
+    const originalTitle = document.title;
+    document.title = 'deck';
+    window.print();
+    setTimeout(() => { document.title = originalTitle; }, 1000);
+  }
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const SWIPE_THRESHOLD = 50;
+
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    const dy = e.changedTouches[0].screenY - touchStartY;
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dy) > Math.abs(dx)) return;
+    if (dx < 0) next();
+    else prev();
+  }, { passive: true });
+
+  const isEmbed = new URLSearchParams(window.location.search).has('embed');
+
+  show(0);
+</script>
+
+</body>
+</html>
