@@ -957,13 +957,624 @@
     </div>
   </section>
 
+  <!-- ========== 4. DEFINITION — AGENT VS. IKKE-AGENT ==========
+    SPEAKER NOTES:
+    Lad os bruge et minut her, for det her er det vigtigste skel.
+    En chatbot svarer på spørgsmål. En automation kører den samme rute hver gang.
+    Et workflow bruger AI som et trin i en pipeline, I selv har designet.
+    En agent — i den strikse betydning — er noget, der selv beslutter,
+    hvad næste skridt er. Den får et mål, ikke en opskrift. Når jeg taler
+    med ledere, oplever jeg, at "agent" bruges i flæng om alt fra ChatGPT til
+    en simpel scriptet pipeline. Hvis vi ikke holder skellet, kan vi ikke tale
+    om risiko og pris meningsfuldt.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Definition</div>
+      <h1>Hvad er en agent? <span class="dim">Og hvad er det ikke.</span></h1>
+      <p class="subtitle" style="font-size: clamp(1.05rem, 1.5vw, 1.3rem); color: #1a1a1a; max-width: 880px; margin-bottom: 2.5rem; line-height: 1.5;">
+        Et system, hvor en sprogmodel <strong>selv styrer</strong> sine handlinger og værktøjsbrug. Og <strong>selv bestemmer</strong>, hvordan en opgave løses.
+      </p>
+      <div class="eyebrow" style="margin-bottom: 0.75rem;">Det er ikke</div>
+      <div class="col-stack" style="max-width: 720px;">
+        <div class="step dim">En chatbot. Svarer, men handler ikke.</div>
+        <div class="step dim">Klassisk automation eller RPA. Følger faste regler.</div>
+        <div class="step dim">Et workflow. Følger en rute, mennesket har tegnet.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. WORKFLOW VS. AGENT ==========
+    SPEAKER NOTES:
+    Tag den her med jer. Workflow = forudsigelig pipeline med AI-trin indeni.
+    Agent = AI, der selv kører rundt. Et workflow er en kogebog, hvor nogle
+    trin er erstattet af AI. En agent er en kok, der selv beslutter, hvad der
+    skal i gryden, og som I betaler pr. minut. Begge har deres plads. Men når
+    I bliver præsenteret for en løsning, så start ALTID med spørgsmålet:
+    "Hvorfor er det her ikke et workflow?" Hvis svaret ikke er overbevisende,
+    så skal det være et workflow.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Det centrale skel</div>
+      <h1>Workflow <span class="dim">vs. agent.</span></h1>
+      <div class="two-col" style="margin-top: 2.5rem; align-items: start;">
+        <div>
+          <div class="eyebrow">Workflow</div>
+          <h2>Mennesket tegner ruten.</h2>
+          <div class="col-stack" style="margin-top: 1.5rem;">
+            <div class="step">AI udfører enkelte trin</div>
+            <div class="step">Forudsigeligt</div>
+            <div class="step">Billigt</div>
+            <div class="step live">Testbart</div>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow">Agent</div>
+          <h2>AI vælger ruten selv.</h2>
+          <div class="col-stack" style="margin-top: 1.5rem;">
+            <div class="step">AI bruger værktøjer i loop</div>
+            <div class="step">Fleksibelt</div>
+            <div class="step">Dyrere</div>
+            <div class="step kill">Sværere at teste</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 6. TRE BYGGESTEN ==========
+    SPEAKER NOTES:
+    OpenAI bruger denne enkle ramme. Tre dele: en model, der ræsonnerer,
+    værktøjer, modellen kan kalde, og instruktioner, der fortæller hvordan
+    den skal opføre sig. I skal kunne stille spørgsmål til alle tre.
+    Hvilken model? Hvilke værktøjer har den adgang til? Hvad står der i
+    instruktionerne, og hvem vedligeholder dem?
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Anatomi</div>
+      <h1>En agent består <span class="dim">af tre ting.</span></h1>
+      <div class="three-col" style="margin-top: 3rem;">
+        <div>
+          <h3>01 · Model</h3>
+          <p style="font-size: 1rem; color: #1a1a1a; margin: 0.4rem 0 0.5rem; font-weight: 400;">Hjernen.</p>
+          <p>Den, der ræsonnerer. Typisk en stor sprogmodel.</p>
+        </div>
+        <div>
+          <h3>02 · Værktøjer</h3>
+          <p style="font-size: 1rem; color: #1a1a1a; margin: 0.4rem 0 0.5rem; font-weight: 400;">Hænderne.</p>
+          <p>Det, modellen kan kalde. API'er, databaser, andre agenter.</p>
+        </div>
+        <div>
+          <h3>03 · Instruktioner</h3>
+          <p style="font-size: 1rem; color: #1a1a1a; margin: 0.4rem 0 0.5rem; font-weight: 400;">Playbook'en.</p>
+          <p>Det, der binder hjerne og hænder sammen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 7. VÆRKTØJER — TRE TYPER ==========
+    SPEAKER NOTES:
+    Hvorfor er det her vigtigt for jer? Fordi risiko-niveauet er meget
+    forskelligt. Et dataværktøj, der slår noget op, er stort set ufarligt.
+    Et action-værktøj, der overfører penge eller sletter en kunde, er højrisiko.
+    Når jeres team beskriver, hvilke værktøjer agenten har, så bed dem
+    klassificere hver enkelt.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Værktøjer</div>
+      <h1>Tre typer. <span class="dim">Tre risikoniveauer.</span></h1>
+      <div class="cap-list" style="margin-top: 2.5rem;">
+        <div class="cap-row">
+          <div class="cap-q">Data</div>
+          <div class="cap-a">Agenten henter information. <em>Slå ordrenummer op. Læs et dokument.</em></div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">Action</div>
+          <div class="cap-a">Agenten gør noget i verden. <em>Send mail. Opret faktura. Refundér.</em></div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">Orkestrering</div>
+          <div class="cap-a">Agenten kalder en anden agent. <em>Send til juridisk agent for kontraktcheck.</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. DEN AUGMENTEREDE LLM ==========
+    SPEAKER NOTES:
+    Anthropic kalder det her "den augmenterede LLM". Det er den mindste
+    interessante enhed. En almindelig sprogmodel, der kan slå op, kalde
+    værktøjer og holde styr på samtalen. Mange virksomheder har slet ikke
+    brug for "agenter" — de har brug for én augmenteret LLM koblet på deres
+    CRM og deres dokumenter. Det er ofte 80% af gevinsten.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Fundamentet</div>
+      <h1>Den augmenterede LLM. <span class="dim">Den mindste interessante enhed.</span></h1>
+      <div class="spec-flow" style="margin-top: 2.5rem;">
+        <div class="spec-block">
+          <h4>LLM</h4>
+          <p>en sprogmodel med tre evner</p>
+        </div>
+        <div class="outputs-row">
+          <div class="output-card"><h5>Retrieval</h5><p>Kan hente information.</p></div>
+          <div class="output-card"><h5>Tools</h5><p>Kan bruge værktøjer.</p></div>
+          <div class="output-card"><h5>Memory</h5><p>Kan huske kontekst.</p></div>
+        </div>
+      </div>
+      <p class="subtitle" style="margin-top: 2rem; max-width: 880px;">Alt andet bygger på den her byggesten. Workflows, agenter, multi-agent-systemer.</p>
+    </div>
+  </section>
+
+  <!-- ========== 9. HVORFOR LIGE NU ==========
+    SPEAKER NOTES:
+    Tre konkrete ting. Tool use: modellerne kunne ikke kalde værktøjer
+    pålideligt i 2023. Pris: samme opgave koster en brøkdel. Standarder
+    som MCP har gjort det muligt at koble agenter på systemer uden at
+    bygge ny integration hver gang. Det er ikke marketing.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">2023 → 2026</div>
+      <h1>Hvorfor lige nu? <span class="dim">Tre strukturelle skift.</span></h1>
+      <div class="three-col" style="margin-top: 3rem;">
+        <div>
+          <h3>Tool use virker</h3>
+          <p>Modellerne kan rent faktisk kalde værktøjer pålideligt. Det kunne de ikke i 2023.</p>
+        </div>
+        <div>
+          <h3>Inferens er billig</h3>
+          <p>Samme opgave koster en brøkdel. 50 tool-kald uden at gå fallit.</p>
+        </div>
+        <div>
+          <h3>Åbne standarder</h3>
+          <p>MCP og fælles protokoller gør integration mulig uden custom-arbejde hver gang.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 10. HVORNÅR GIVER EN AGENT MENING ==========
+    SPEAKER NOTES:
+    OpenAI's tre kriterier. Et eksempel: faktura-godkendelse under 1000 kr.
+    fra en kendt leverandør — det er ikke et agent-problem, det er et
+    godkendelsesregel-problem. Men: en kundeforespørgsel om refundering,
+    hvor svaret afhænger af kontekst, historik og produkttype — det er
+    en agent-kandidat. Eller måske et workflow med en LLM som ét trin.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Beslutningsguide</div>
+      <h1>Hvornår giver en agent mening? <span class="dim">Og hvornår ikke.</span></h1>
+      <div class="two-col" style="margin-top: 2.5rem; align-items: start;">
+        <div>
+          <div class="eyebrow">Brug agent når</div>
+          <div class="col-stack" style="margin-top: 1rem;">
+            <div class="step live">Reglerne er for nuancerede til klassisk automation</div>
+            <div class="step live">Regelbaseret logik er skrøbelig og dyr at vedligeholde</div>
+            <div class="step live">Input er ustruktureret. Dokumenter, sprog, samtaler.</div>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow">Brug ikke agent når</div>
+          <div class="col-stack" style="margin-top: 1rem;">
+            <div class="step kill">Opgaven kan løses med en if-else</div>
+            <div class="step kill">Output skal være 100% forudsigeligt hver gang</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 11. FEM MØNSTRE — INTRO (DARK PIVOT) ==========
+    SPEAKER NOTES:
+    Det her er den faglige kerne i Anthropic's guide. Fem mønstre. Når
+    lederne kender dem, kan de stille de rigtige spørgsmål, og de kan
+    genkende, hvad deres team i virkeligheden bygger. Pointen er ikke,
+    at I skal kunne implementere dem — pointen er, at I kan kende dem
+    igen og spørge: "Hvilket mønster ligner det her mest?"
+  -->
+  <section class="slide dark">
+    <div class="slide-inner">
+      <div class="eyebrow">Den faglige kerne</div>
+      <h1>Fem mønstre. <span class="dim">Det meste produktion bygger på dem.</span></h1>
+      <div style="margin-top: 2.5rem; max-width: 760px;">
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; padding: 0.85rem 0; border-top: 1px solid #333; align-items: baseline;">
+          <span style="color: #888; font-weight: 300; font-size: 0.9rem; letter-spacing: 0.05em;">01</span>
+          <span style="font-size: clamp(1.1rem, 1.6vw, 1.4rem); color: #f5f5f3;">Prompt chaining</span>
+        </div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; padding: 0.85rem 0; border-top: 1px solid #333; align-items: baseline;">
+          <span style="color: #888; font-weight: 300; font-size: 0.9rem; letter-spacing: 0.05em;">02</span>
+          <span style="font-size: clamp(1.1rem, 1.6vw, 1.4rem); color: #f5f5f3;">Routing</span>
+        </div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; padding: 0.85rem 0; border-top: 1px solid #333; align-items: baseline;">
+          <span style="color: #888; font-weight: 300; font-size: 0.9rem; letter-spacing: 0.05em;">03</span>
+          <span style="font-size: clamp(1.1rem, 1.6vw, 1.4rem); color: #f5f5f3;">Parallelisering</span>
+        </div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; padding: 0.85rem 0; border-top: 1px solid #333; align-items: baseline;">
+          <span style="color: #888; font-weight: 300; font-size: 0.9rem; letter-spacing: 0.05em;">04</span>
+          <span style="font-size: clamp(1.1rem, 1.6vw, 1.4rem); color: #f5f5f3;">Orchestrator-workers</span>
+        </div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; padding: 0.85rem 0; border-top: 1px solid #333; align-items: baseline;">
+          <span style="color: #888; font-weight: 300; font-size: 0.9rem; letter-spacing: 0.05em;">05</span>
+          <span style="font-size: clamp(1.1rem, 1.6vw, 1.4rem); color: #f5f5f3;">Evaluator-optimizer</span>
+        </div>
+      </div>
+      <p class="subtitle" style="margin-top: 2rem; color: #ccc;">Når jeres team beskriver en løsning, så peg på hvilket mønster det er.</p>
+    </div>
+  </section>
+
+  <!-- ========== 12. MØNSTER 1 — PROMPT CHAINING ==========
+    SPEAKER NOTES:
+    Det enkleste og hyppigst undervurderede mønster. Mange opgaver, der
+    bliver foreslået som "agent-projekter", er i virkeligheden prompt chains.
+    Hvert led er én LLM-kald med en klar opgave, og I kan teste hvert led
+    separat. Forudsigeligt, billigt, let at fejlsøge. Start her i tvivlstilfælde.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Mønster 01 / 05</div>
+      <h1>Prompt chaining. <span class="dim">Sekventielle trin.</span></h1>
+      <p class="subtitle">Hvert trin er én LLM-opgave med klart input og output. Hvert delresultat kan testes for sig.</p>
+      <div class="dot-flow" style="margin: 3rem 0 2rem;">
+        <div class="dot-step"><div class="dot"></div><h4>Læs mail</h4><p>uddrag indhold</p></div>
+        <div class="dot-step"><div class="dot"></div><h4>Klassificer</h4><p>type og hastværk</p></div>
+        <div class="dot-step"><div class="dot"></div><h4>Udarbejd svar</h4><p>udkast</p></div>
+        <div class="dot-step"><div class="dot"></div><h4>Brand-check</h4><p>tone og kvalitet</p></div>
+        <div class="dot-step"><div class="dot"></div><h4>Send</h4><p>eller eskaler</p></div>
+      </div>
+      <div class="meta">Hvornår: opgaven kan brydes klart i delopgaver, og hvert delresultat kan kontrolleres.</div>
+    </div>
+  </section>
+
+  <!-- ========== 13. MØNSTER 2 — ROUTING ==========
+    SPEAKER NOTES:
+    Routing løser mest i kundeservice og support. En klassifikator i front,
+    der vurderer henvendelsen og dirigerer den videre. Hver rute kan have
+    sin egen specialiserede prompt, sit eget værktøjssæt, måske endda sin
+    egen model. Spare penge, øge kvalitet.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Mønster 02 / 05</div>
+      <h1>Routing. <span class="dim">Klassificér og dirigér.</span></h1>
+      <p class="subtitle">Et input klassificeres og sendes til den rette specialiserede håndtering. Hver rute har sin egen prompt.</p>
+      <div style="margin-top: 3rem; display: grid; grid-template-columns: auto auto 1fr; gap: 2rem; align-items: center; max-width: 880px;">
+        <div style="font-weight: 500; font-size: 1.1rem;">Kundehenvendelse</div>
+        <div style="color: #a0a09a; font-size: 1.5rem; font-weight: 300;">→</div>
+        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <div style="padding: 0.65rem 1.1rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 0.95rem;">Refundering</div>
+          <div style="padding: 0.65rem 1.1rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 0.95rem;">Teknisk support</div>
+          <div style="padding: 0.65rem 1.1rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 0.95rem;">Salg</div>
+        </div>
+      </div>
+      <div class="meta" style="margin-top: 2.5rem;">Hvornår: input falder i klart adskilte kategorier, der hver kræver specialiseret behandling.</div>
+    </div>
+  </section>
+
+  <!-- ========== 14. MØNSTER 3 — PARALLELISERING ==========
+    SPEAKER NOTES:
+    To varianter. Den ene: opgaven kan deles op, så flere ting kører
+    samtidig. Den anden, og mere interessante for ledere: flere uafhængige
+    tjek på samme materiale. Hvis I lader én LLM kontrollere en andens
+    arbejde, fanger I langt flere fejl. En billig måde at hæve kvaliteten på.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Mønster 03 / 05</div>
+      <h1>Parallelisering. <span class="dim">Flere kald samtidigt.</span></h1>
+      <p class="subtitle">For fart, eller for sikkerhed. Flere uafhængige tjek på samme materiale fanger flere fejl.</p>
+      <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 2rem; align-items: center; max-width: 920px;">
+        <div style="font-weight: 500; text-align: right;">Kontrakt</div>
+        <div style="display: grid; gap: 0.6rem;">
+          <div style="padding: 0.65rem 1.1rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 0.95rem;">Juridisk risiko</div>
+          <div style="padding: 0.65rem 1.1rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 0.95rem;">Økonomi</div>
+          <div style="padding: 0.65rem 1.1rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 0.95rem;">Leveringsforpligtelser</div>
+        </div>
+        <div style="font-weight: 500;">Samlet vurdering</div>
+      </div>
+      <div class="meta" style="margin-top: 2.5rem;">Hvornår: opgaven kan deles, eller når flere perspektiver øger sikkerheden.</div>
+    </div>
+  </section>
+
+  <!-- ========== 15. MØNSTER 4 — ORCHESTRATOR-WORKERS ==========
+    SPEAKER NOTES:
+    Her begynder vi at nærme os "rigtige agenter". Forskellen fra
+    parallelisering er, at I ikke ved på forhånd, hvor mange workers
+    der skal til. Orchestrator bestemmer det undervejs. Kraftfuldt, men
+    også her, det begynder at koste. Bruges typisk til research og
+    kompleks fejlsøgning.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Mønster 04 / 05</div>
+      <h1>Orchestrator-workers. <span class="dim">Dynamisk uddelegering.</span></h1>
+      <p class="subtitle">En central LLM planlægger og uddelegerer til specialiserede workers. Undervejs. Først her nærmer vi os rigtige agenter.</p>
+      <div style="margin-top: 2.5rem; max-width: 760px;">
+        <div style="padding: 0.85rem 1.25rem; background: #1a1a1a; color: #f5f5f3; border-radius: 8px; font-size: 1rem; font-weight: 500; text-align: center; max-width: 280px; margin: 0 auto 1.25rem;">Orchestrator</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;">
+          <div style="padding: 0.7rem 1rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 0.9rem; text-align: center;">Worker A</div>
+          <div style="padding: 0.7rem 1rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 0.9rem; text-align: center;">Worker B</div>
+          <div style="padding: 0.7rem 1rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 0.9rem; text-align: center;">Worker C</div>
+        </div>
+        <div style="text-align: center; color: #a0a09a; font-size: 0.75rem; margin-top: 0.75rem; letter-spacing: 0.05em;">planlæg ↓ &nbsp;&nbsp; ↑ samlet svar</div>
+      </div>
+      <div class="meta" style="margin-top: 2rem;">Hvornår: delopgaverne kan ikke forudsiges. Kun målet er kendt på forhånd.</div>
+    </div>
+  </section>
+
+  <!-- ========== 16. MØNSTER 5 — EVALUATOR-OPTIMIZER ==========
+    SPEAKER NOTES:
+    Tænk forfatter og redaktør. En LLM skriver et udkast. En anden gennemgår
+    det og giver feedback. Den første reviderer. Loopet kører, til kriterierne
+    er opfyldt. Bruges når kvalitet er vigtigere end fart. Kræver klare
+    evaluator-kriterier, ellers går loopet i ring uden at blive bedre.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Mønster 05 / 05</div>
+      <h1>Evaluator-optimizer. <span class="dim">Producent og kritiker, i loop.</span></h1>
+      <p class="subtitle">Én LLM producerer. En anden kritiserer. Loopet kører, indtil kvalitetskriterierne er opfyldt.</p>
+      <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr auto 1fr auto; gap: 1.5rem; align-items: center; max-width: 880px;">
+        <div style="padding: 0.85rem 1.25rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 1rem; font-weight: 500; text-align: center;">Producent</div>
+        <div style="color: #a0a09a; font-size: 1.4rem; font-weight: 300;">↔</div>
+        <div style="padding: 0.85rem 1.25rem; background: #fafaf8; border: 1px solid #e0e0db; border-radius: 8px; font-size: 1rem; font-weight: 500; text-align: center;">Evaluator</div>
+        <div style="color: #1a1a1a; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;">→ godkendt</div>
+      </div>
+      <div class="meta" style="margin-top: 2.5rem;">Hvornår: kvaliteten kan beskrives i tydelige kriterier, og iteration giver målbar værdi.</div>
+    </div>
+  </section>
+
+  <!-- ========== 17. HVOR FOLK FALDER AF — FIRE SANDHEDER ==========
+    SPEAKER NOTES:
+    Det sværeste at få ind, og det vigtigste at få sagt. Første: modstå
+    den fede multi-agent-løsning. Andet: et veldokumenteret, snævert
+    værktøj er guld. Tredje: agentens prompt er reelt kildekode —
+    versionér den. Fjerde: uden evals ved I ikke, om I forbedrer
+    eller forværrer.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Sandheder</div>
+      <h1>Hvor folk falder af. <span class="dim">Fire ting at have med.</span></h1>
+      <div class="cap-list" style="margin-top: 2rem;">
+        <div class="cap-row">
+          <div class="cap-q">Simpelt slår komplekst</div>
+          <div class="cap-a">Næsten altid. Modstå multi-agent-fristelsen.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">Værktøjerne er agenten</div>
+          <div class="cap-a">Ikke modellen. Et veldokumenteret, snævert værktøj er guld.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">Instruktioner er kode</div>
+          <div class="cap-a">Versionér dem. Hvis ingen ejer dem, er det en tikkende bombe.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">Evals er ikke valgfrit</div>
+          <div class="cap-a">Uden måling er I blinde. Som at deploye software uden tests.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 18. SIKKERHED OG KONTROL — TRE LAG ==========
+    SPEAKER NOTES:
+    Det afgørende slide. Guardrails: automatiske checks, der filtrerer
+    input. Risikoklassificering: hvert eneste værktøj kategoriseres.
+    Det er ikke teknik — det er politik. Human-in-the-loop: ved høj
+    risiko, eller når agenten ikke er sikker, skal et menneske ind over.
+    Det er ikke en svaghed — det er design.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Sikkerhed og kontrol</div>
+      <h1>Tre lag. <span class="dim">Ikke en checkliste.</span></h1>
+      <div class="three-col" style="margin-top: 3rem;">
+        <div>
+          <h3>Guardrails</h3>
+          <p style="font-size: 0.7rem; color: #b5b5b0; text-transform: uppercase; letter-spacing: 0.05em; margin: 0.4rem 0 0.6rem;">automatiske filtre</p>
+          <p>Relevans, PII, jailbreak-forsøg, off-topic. Filtre på input og output.</p>
+        </div>
+        <div>
+          <h3>Risikoklassificering</h3>
+          <p style="font-size: 0.7rem; color: #b5b5b0; text-transform: uppercase; letter-spacing: 0.05em; margin: 0.4rem 0 0.6rem;">lav · mellem · høj</p>
+          <p>Read-only er lavt. Penge eller sletninger er højt. Politik, ikke teknik.</p>
+        </div>
+        <div>
+          <h3>Human-in-the-loop</h3>
+          <p style="font-size: 0.7rem; color: #b5b5b0; text-transform: uppercase; letter-spacing: 0.05em; margin: 0.4rem 0 0.6rem;">godkendelse og eskalering</p>
+          <p>Menneske ind ved høj risiko og lav konfidens. Bevidst arkitektur, ikke umoden løsning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 19. HVAD KOSTER DET ==========
+    SPEAKER NOTES:
+    En agent kan let lave 20-50 LLM-kald. Det er ikke gratis. Bed altid om
+    en omkostningsmodel pr. opgave OG en stress-test ved volumen. Latency:
+    almindelig LLM 1-3 sekunder, agent 30-120 sekunder. Fint i baggrunden,
+    dræbende i en kundechat. Uforudsigelighed: to næsten identiske opgaver
+    kan koste meget forskelligt.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Omkostning og latency</div>
+      <h1>Hvad koster det? <span class="dim">Og hvor langsomt er det?</span></h1>
+      <div class="cap-list" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+        <div class="cap-row">
+          <div class="cap-q">Pris pr. opgave</div>
+          <div class="cap-a">10–100× et almindeligt LLM-kald.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">Latency</div>
+          <div class="cap-a">Sekunder til minutter. Ikke millisekunder.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">Forudsigelighed</div>
+          <div class="cap-a">Samme opgave kan koste 2× næste gang.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <h3>Spørg altid</h3>
+        <p>Hvad koster én kørsel. <strong>Og hvad koster ti tusind.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 20. HVORDAN STARTER VI — TRE REGLER ==========
+    SPEAKER NOTES:
+    Tre håndfaste regler, som begge guides er enige om. Start simpelt.
+    Brug den stærkeste model først, så I ved hvad det BEDSTE output ser
+    ud som. Bagvendt rationale, men det virker. Og evals: opbyg et lille
+    testbatteri med 20-50 realistiske eksempler. "Vi tror multi-agent er
+    bedre" er ikke en grund. Tal er.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Sådan starter I</div>
+      <h1>Tre regler. <span class="dim">Begge guides er enige.</span></h1>
+      <div class="three-col" style="margin-top: 3rem;">
+        <div>
+          <h3>01 · Start simpelt</h3>
+          <p>Én agent eller ét workflow. Få værktøjer. Modstå fristelsen til at bygge stort.</p>
+        </div>
+        <div>
+          <h3>02 · Stærkeste model først</h3>
+          <p>Sæt baseline med det bedste. Skift ned senere, når I ved, hvad I ofrer.</p>
+        </div>
+        <div>
+          <h3>03 · Evals fra dag ét</h3>
+          <p>Uden måling ved I ikke, om I forbedrer eller forværrer. 20–50 realistiske eksempler.</p>
+        </div>
+      </div>
+      <p class="subtitle" style="margin-top: 3rem; max-width: 880px;">Tilføj kun kompleksitet, når simpelt <strong style="color: #1a1a1a;">beviseligt</strong> ikke er nok.</p>
+    </div>
+  </section>
+
+  <!-- ========== 21. HVAD GØR VI I MORGEN ==========
+    SPEAKER NOTES:
+    Det her er hjemmeopgaven. Find tre kandidater. Ikke fem, ikke ti.
+    Tre. Hvor I har ustruktureret input, nuancerede regler, og hvor et
+    menneske bruger tid på det. Vælg den enkleste — ikke den med højest
+    gevinst. Mål baseline før I bygger noget. Den her tilgang er kedelig.
+    Den er også den, der virker.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">I morgen</div>
+      <h1>Hvad gør vi <span class="dim">i morgen?</span></h1>
+      <div style="margin-top: 2.5rem; max-width: 880px;">
+        <div style="border-top: 1px solid #d5d5d0; padding: 1rem 0 1.5rem;">
+          <div style="font-size: clamp(1rem, 1.3vw, 1.15rem); font-weight: 500; margin-bottom: 0.75rem;">
+            <span style="color: #a0a09a; font-weight: 300; margin-right: 1.25rem;">01</span>Find tre kandidater
+          </div>
+          <div style="font-size: 0.9rem; color: #a0a09a; padding-left: 2.5rem; line-height: 1.65;">
+            Hvor input er ustruktureret. Hvor reglerne er nuancerede. Hvor en menneskelig ekspert bruger tid på det i dag.
+          </div>
+        </div>
+        <div style="border-top: 1px solid #d5d5d0; padding: 1rem 0 1.5rem;">
+          <div style="font-size: clamp(1rem, 1.3vw, 1.15rem); font-weight: 500;">
+            <span style="color: #a0a09a; font-weight: 300; margin-right: 1.25rem;">02</span>Vælg den enkleste. Byg et workflow, ikke en agent.
+          </div>
+        </div>
+        <div style="border-top: 1px solid #d5d5d0; padding: 1rem 0 1.5rem;">
+          <div style="font-size: clamp(1rem, 1.3vw, 1.15rem); font-weight: 500;">
+            <span style="color: #a0a09a; font-weight: 300; margin-right: 1.25rem;">03</span>Mål baseline. Iterér. Skalér først, når det enkle beviseligt virker.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 22. SEKS SPØRGSMÅL — LEDERENS VÆRKTØJ ==========
+    SPEAKER NOTES:
+    Hvis I husker ÉT slide fra i dag, så husk det her. Det er ikke jeres
+    job at bygge agenter. Det er jeres job at stille de rigtige spørgsmål.
+    Hvis svaret på et af spørgsmålene er "det har vi ikke tænkt på", så
+    er det ikke klar til produktion endnu.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Værktøj til ledere</div>
+      <h1>Seks spørgsmål. <span class="dim">Stil dem altid.</span></h1>
+      <div class="cap-list" style="margin-top: 1.5rem;">
+        <div class="cap-row">
+          <div class="cap-q">01 · Hvorfor er det ikke et workflow?</div>
+          <div class="cap-a">Tvinger leverandøren til at retfærdiggøre kompleksitet.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">02 · Hvilke værktøjer, og hvilket risikoniveau?</div>
+          <div class="cap-a">Tvinger en risikosamtale før den er nødvendig.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">03 · Hvor er menneske-i-loopet?</div>
+          <div class="cap-a">Sikrer ansvarlighed på de høje risikoniveauer.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">04 · Hvad koster én kørsel? Og ti tusind?</div>
+          <div class="cap-a">Forhindrer økonomiske overraskelser i måned tre.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">05 · Hvordan måler vi, om den bliver bedre?</div>
+          <div class="cap-a">Uden evals glider projektet usynligt af sporet.</div>
+        </div>
+        <div class="cap-row">
+          <div class="cap-q">06 · Hvem ejer instruktionerne, og hvem versionerer dem?</div>
+          <div class="cap-a">Forhindrer at agentens hjerne bliver et fælles dokument uden ejerskab.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 23. HVIS I KUN HUSKER ÉN TING — DARK QUOTE ==========
+    SPEAKER NOTES:
+    Det vigtigste budskab, jeg kan give jer som ledere i 2026. Agenter
+    er et reelt og kraftfuldt værktøj. Men de er det rigtige værktøj
+    sjældnere, end markedet vil have jer til at tro. De fleste processer,
+    I ser kandidere til "agent-projekter", er i virkeligheden
+    workflow-projekter.
+  -->
+  <section class="slide dark quote-slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Hvis I kun husker én ting</div>
+      <h1 style="font-size: clamp(2.2rem, 5.5vw, 4.5rem); line-height: 1.15; letter-spacing: -0.035em;">
+        De fleste opgaver er ikke agent-opgaver.<br>
+        <span class="dim">De er workflow-opgaver. Start der.</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- ========== 24. TAK — KILDER ==========
+    SPEAKER NOTES:
+    To læsetips: Anthropic's "Building Effective Agents" er kort og
+    praktisk — kan læses på en aften. OpenAI's guide er mere
+    implementeringsfokuseret. I behøver ikke vide alt. I skal bare kunne
+    stille de seks spørgsmål fra slide 22. Resten følger.
+  -->
+  <section class="slide">
+    <div class="slide-inner">
+      <h1 style="font-size: clamp(2.5rem, 5vw, 4rem);">Tak.</h1>
+      <p class="subtitle">Spørgsmål?</p>
+      <div class="meta" style="margin-top: 3rem; line-height: 1.8;">
+        Anthropic · <em>Building Effective Agents</em> · resources.anthropic.com<br>
+        OpenAI · <em>A Practical Guide to Building AI Agents</em> · openai.com
+      </div>
+    </div>
+  </section>
 
 </div>
 
 <button class="pdf-btn" onclick="downloadPDF()">Download PDF</button>
 
 <div class="nav">
-  <span id="counter">1 / 3</span>
+  <span id="counter">1 / 24</span>
   <div class="nav-buttons">
     <button class="nav-btn" onclick="prev()">‹</button>
     <button class="nav-btn" onclick="next()">›</button>
